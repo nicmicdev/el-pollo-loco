@@ -2,9 +2,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Courier New', Courier, monospace ;
+    color: orange;
 }
 
 canvas {
+    margin-top: 220px;
     background-color: black;
 }

@@ -2,7 +2,7 @@ class Character extends MovableObject {
 
     height = 280;
     speed = 10;
-    y = 160;
+    y = 50;
     IMAGES_WALKING = [
         '../img/2_character_pepe/2_walk/W-21.png',
         '../img/2_character_pepe/2_walk/W-22.png',
@@ -36,7 +36,7 @@ class Character extends MovableObject {
     IMAGES_HURT = [
         'img/2_character_pepe/4_hurt/H-41.png',
         'img/2_character_pepe/4_hurt/H-42.png',
-        'img/2_character_pepe/4_hurt/H-43.png'
+        'img/2_character_pepe/4_hurt/H-43.png',
     ];
 
     world;
@@ -54,41 +54,26 @@ class Character extends MovableObject {
     }
 
     animate() {
-
+        
         setInterval(() => {
             this.walking_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.walking_sound.play();
                 this.otherDirection = false;
-
-
             }
-            
-
             if(this.world.keyboard.LEFT && this.x > -500 ) {
                 this.moveLeft();
                 this.walking_sound.play();
                 this.otherDirection = true;
-
             }
-
-
             if(this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-                
             }
-
-
-
-
-
             this.world.camera_x = -this.x + 100;
-
-            
-            
         }, 1000 / 60);
 
+        
         setInterval(() => {
 
             if (this.isDead()){

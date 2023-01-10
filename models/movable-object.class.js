@@ -12,28 +12,21 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25);
+        }, 1000 / 35);
     }
 
     isAboveGround() {
-        return this.y < 180;
+        if (this instanceof ThrowableObject) {     // Throwable objects should always fall
+            return true;
+        } else {
+            return this.y < 180;
+        }
     }
 
-
-    
-    
-
-    //
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
-    }
 
     hit() {
         this.energy -= 5;
-        if (this.energy < 0){
+        if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
@@ -73,6 +66,64 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
+
+    // isColliding(mo) {
+    //     return this.x + this.width > mo.x &&
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x &&
+    //         this.y < mo.y + mo.height;
+    // }
+    
+    isCollidingTop(mo) {
+        return this.y < mo.y + mo.height;
+    }
+
+    isColliding(object) {
+        return this.rightBorder() > this.leftObjectBorder(object) &&
+               this.bottomBorder() > this.topObjectBorder(object) &&
+               this.leftBorder() < this.rightObjectBorder(object) &&
+               this.topBorder() < this.bottomObjectBorder(object);
+       }
+       
+   
+       rightBorder() {
+           return this.x + this.width - this.offset.right;
+       }
+   
+   
+       leftBorder() {
+           return this.x + this.offset.left;
+       }
+   
+   
+       topBorder() {
+           return this.y + this.offset.top;
+       }
+   
+   
+       bottomBorder() {
+           return this.y + this.height - this.offset.bottom;
+       }
+   
+   
+       rightObjectBorder(object) {
+           return object.x + object.width - object.offset.right;
+       }
+   
+   
+       leftObjectBorder(object) {
+           return object.x + object.offset.left;
+       }
+   
+   
+       topObjectBorder(object) {
+           return object.y + object.offset.top;
+       }
+   
+   
+       bottomObjectBorder(object) {
+           return object.y + object.height - object.offset.bottom;
+       }
 
 
 
