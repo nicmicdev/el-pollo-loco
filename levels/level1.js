@@ -3,7 +3,7 @@ const level1 = new Level(
     // ENEMIES 
     
     [                     
-        // new Chicken(),
+        new Chicken(),
         // new Chicken(),
         // new Chicken(),
         // new SmallChicken(),
@@ -13,18 +13,35 @@ const level1 = new Level(
 
     // BOTTLES
     
-    [
-        new Bottle(500, 370, 0),
-        new Bottle(600, 370, 1),
-        new Bottle(550, 150, 2),
-
-
+    [   //ground
+        // new Bottle(600, 370, 0),
+        // new Bottle(1300, 370, 1),
+        // new Bottle(1700, 370, 1),
+        // new Bottle(2300, 370, 0),
+        // new Bottle(2600, 370, 0),
+        // new Bottle(2700, 370, 1),
+        // new Bottle(3100, 370, 1),
+        // new Bottle(3400, 370, 1),
+        // new Bottle(4150, 370, 0),
+        
+        //air 
+        // new Bottle(550, 150, 2),
+        // new Bottle(1050, 150, 2),
+        // new Bottle(1550, 150, 2),
+        // new Bottle(2050, 150, 2),
+        // new Bottle(2550, 150, 2),
+        
     ],
 
     //COINS
 
     [
-        new Coin (400, 150)
+        new Coin (400, 150),
+        new Coin (800, 150),
+        // new Coin (1200, 150),
+        // new Coin (1600, 150),
+        // new Coin (2000, 150),
+        // new Coin (2400, 150),
 
     ],
 

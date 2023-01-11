@@ -1,6 +1,6 @@
 class Level {
     enemies;
-    bottles;
+    botlles;
     coins;
     clouds;
     backgroundObjects;

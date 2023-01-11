@@ -9,4 +9,5 @@ body {
 canvas {
     margin-top: 220px;
     background-color: black;
+    border-radius: 30px;
 }

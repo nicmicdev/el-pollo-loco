@@ -1,4 +1,4 @@
-class Bottle extends CollectibleObject {
+class Bottle extends DrawableObject {
 
     height = 75;
     width = 75;

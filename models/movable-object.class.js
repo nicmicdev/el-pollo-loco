@@ -84,6 +84,11 @@ class MovableObject extends DrawableObject {
                this.leftBorder() < this.rightObjectBorder(object) &&
                this.topBorder() < this.bottomObjectBorder(object);
        }
+    
+    isCollidingChicken(object) {
+        return this.bottomBorder() > this.topObjectBorder(object);
+
+       }
        
    
        rightBorder() {
