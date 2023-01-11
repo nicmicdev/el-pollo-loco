@@ -8,6 +8,8 @@ class World {
     keyboard;
     camera_x = -100;
     statusBar = new StatusBar();
+    statusBottles = new StatusBottles();
+    statusCoins = new StatusCoins();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -63,12 +65,17 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         //---------Space for fixed objects--------------
         this.addToMap (this.statusBar);
+        this.addToMap (this.statusBottles);
+        this.addToMap (this.statusCoins);
+        this.drawAmountOfCollectedObjects();
         //---put fixed objects in the space in between---
         this.ctx.translate(this.camera_x, 0);
 
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.botlles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
 
@@ -82,6 +89,13 @@ class World {
             self.draw();
         })
 
+    }
+
+    drawAmountOfCollectedObjects() {
+        this.ctx.font = '30px Times New Roman';
+        this.ctx.fillStyle = 'black';
+        this.ctx.fillText('0', 70, 95);     // number of coins
+        this.ctx.fillText('0', 160, 95);   // number of bottles
     }
 
     

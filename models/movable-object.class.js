@@ -74,9 +74,9 @@ class MovableObject extends DrawableObject {
     //         this.y < mo.y + mo.height;
     // }
     
-    isCollidingTop(mo) {
-        return this.y < mo.y + mo.height;
-    }
+    // isCollidingTop(mo) {
+    //     return this.y < mo.y + mo.height;
+    // }
 
     isColliding(object) {
         return this.rightBorder() > this.leftObjectBorder(object) &&
