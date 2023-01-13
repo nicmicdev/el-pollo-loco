@@ -1,6 +1,7 @@
 class World {
 
     character = new Character();
+    endboss = new Endboss();
 
     level = level1;
     canvas;
@@ -33,9 +34,10 @@ class World {
     run() {
         setInterval(() => {
 
-            this.checkEnemyCollision();
+            this.checkChickenCollision();
             this.checkEnbossCollision();
             this.checkThrowObjects();
+            this.checkThrowCollision();
 
         }, 200);
 
@@ -56,18 +58,19 @@ class World {
     }
 
     checkThrowCollision() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.throwableObjects.isColliding(enemy)) {
+        this.throwableObjects.forEach((bottle) => {
+            if (this.endboss.isColliding(bottle)) {
+                console.log('ENDBOSS HIT');
                 
             }
          });
 
     }
 
-    checkEnemyCollision() {
+    checkChickenCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && this.character.speedY  == 0) {
-                this.character.hit();
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && this.character.speedY  == 0 ) {
+                this.character.hit(5);
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Character, energy:', this.character.energy);
             } 
@@ -77,7 +80,7 @@ class World {
     checkEnbossCollision() {
         this.level.endboss.forEach((endboss) => {
             if (this.character.isColliding(endboss)) {
-                this.character.hit();
+                this.character.hit(10);
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Endboss, energy:', this.character.energy);
             } 
@@ -86,7 +89,7 @@ class World {
 
     checkChickenDead() {
         this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isAboveGround()) {
+            if (this.character.isColliding(enemy) && this.character.speedY < 0) {
                  this.level.enemies.splice(index,1);
                  this.character.speedY = 20;          //character jumps up little bit if colliding from top 
                  console.log('CHICKEN IS DEAD!');
@@ -131,6 +134,8 @@ class World {
 
 
         this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+
         
         this.ctx.translate(-this.camera_x, 0);
         //---------Space for fixed objects--------------
@@ -147,7 +152,7 @@ class World {
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.botlles);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.clouds);
+        // this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
 
 

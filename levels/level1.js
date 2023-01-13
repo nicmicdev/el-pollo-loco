@@ -3,11 +3,11 @@ const level1 = new Level(
     // ENEMIES 
     
     [                     
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
-        new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
+        // new Chicken(),
         new SmallChicken(),
         new SmallChicken(),
         new SmallChicken(),
