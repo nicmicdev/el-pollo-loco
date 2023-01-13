@@ -5,7 +5,7 @@ class StatusCoins extends DrawableObject {
     x = 5;
     y = 50;
 
-    IMAGE = '../img/7_statusbars/3_icons/icon_coin.png';
+    IMAGE = 'img/7_statusbars/3_icons/icon_coin.png';
     
     constructor() {
         super().loadImage(this.IMAGE);

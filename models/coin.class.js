@@ -11,7 +11,7 @@ class Coin extends DrawableObject {
     }
 
 
-    IMAGE = '../img/8_coin/coin_1.png';
+    IMAGE = 'img/8_coin/coin_1.png';
     
     constructor(x,y) {
         super().loadImage(this.IMAGE);

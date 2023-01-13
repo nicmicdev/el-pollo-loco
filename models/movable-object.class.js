@@ -11,6 +11,8 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+            } else {
+                this.speedY = 0;
             }
         }, 1000 / 35);
     }
@@ -19,7 +21,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) {     // Throwable objects should always fall
             return true;
         } else {
-            return this.y < 180;
+            return this.y < 150;
         }
     }
 
@@ -56,6 +58,7 @@ class MovableObject extends DrawableObject {
     moveRight() {
         this.x += this.speed;
     }
+
 
 
     moveLeft() {

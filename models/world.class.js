@@ -34,12 +34,17 @@ class World {
         setInterval(() => {
 
             this.checkEnemyCollision();
-            this.checkCoinCollision();
-            this.checkBottleCollision();
-            this.checkChickenDead();
+            this.checkEnbossCollision();
             this.checkThrowObjects();
 
         }, 200);
+
+        setInterval(() => {
+            this.checkCoinCollision();
+            this.checkBottleCollision();
+            this.checkChickenDead();
+            
+        }, 500/60);
     }
 
     checkThrowObjects() {
@@ -61,12 +66,33 @@ class World {
 
     checkEnemyCollision() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && !this.character.isAboveGround() && this.character.speedY  == 0) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Character, energy:', this.character.energy);
+            } 
+         });
+    }
+    
+    checkEnbossCollision() {
+        this.level.endboss.forEach((endboss) => {
+            if (this.character.isColliding(endboss)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+                console.log('Collision with Endboss, energy:', this.character.energy);
+            } 
+         });
+    }
+
+    checkChickenDead() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isAboveGround()) {
+                 this.level.enemies.splice(index,1);
+                 this.character.speedY = 20;          //character jumps up little bit if colliding from top 
+                 console.log('CHICKEN IS DEAD!');
             }
          });
+        
     }
 
     checkCoinCollision() {
@@ -91,15 +117,7 @@ class World {
          });
     }
 
-    checkChickenDead() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy)  && this.character.isAboveGround() ) {
-                 this.level.enemies.splice(index,1);
-                 console.log('CHICKEN IS DEAD!');
-            }
-         });
-        
-    }
+    
 
 
 
@@ -126,6 +144,7 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.botlles);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
