@@ -12,9 +12,14 @@ class SmallChicken extends MovableObject {
         
     ];
 
+    IMAGE_DEAD = [
+        'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
+    ];
+
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGE_DEAD);
 
 
         this.x = 250 + Math.random() * 1000; //Zahl zwischen 200 und 700
@@ -35,6 +40,20 @@ class SmallChicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }, 200);
 
+        // this.animateChickenDeadOrWalking();
+
+    }
+
+    animateChickenDeadOrWalking() {
+        setInterval(() => {
+            if (this.isDead) {
+                this.playAnimation(this.IMAGE_DEAD)
+                
+            } else {
+                this.playAnimation(this.IMAGES_WALKING)
+            }
+            
+        }, 125);
     }
 
 
