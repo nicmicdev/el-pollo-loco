@@ -32,22 +32,34 @@ class World {
 
 
     run() {
-        setInterval(() => {
+        this.slowInterval();
+        this.fastInterval();    
+    }
 
-            this.checkChickenCollision();
+    slowInterval() {
+        setInterval(() => {
+            // this.checkChickenCollision();
+            // this.checkSmallChickenCollision();
+            this.checkEnemyCollision(this.level.chickens,5);
+            this.checkEnemyCollision(this.level.smallChickens, 2);
             this.checkEnbossCollision();
             this.checkThrowObjects();
             this.checkThrowCollision();
 
         }, 200);
+    }
 
+
+    fastInterval() {
         setInterval(() => {
             this.checkCoinCollision();
             this.checkBottleCollision();
             this.checkChickenDead();
+            this.checkSmallChickenDead();
             
         }, 500/60);
     }
+
 
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlesCollected > 0 && this.character.otherDirection == false) {
@@ -57,25 +69,43 @@ class World {
         }
     }
 
+
     checkThrowCollision() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
                 console.log('ENDBOSS HIT');
-                
             }
          });
-
     }
 
-    checkChickenCollision() {
-        this.level.enemies.forEach((enemy) => {
+    checkEnemyCollision(array, damage) {
+        array.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround() && this.character.speedY  == 0 ) {
-                this.character.hit(5);
+                this.character.hit(damage);
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Character, energy:', this.character.energy);
             } 
          });
     }
+
+    // checkChickenCollision() {
+    //     this.level.chickens.forEach((chicken) => {
+    //         if (this.character.isColliding(chicken) && !this.character.isAboveGround() && this.character.speedY  == 0 ) {
+    //             this.character.hit(5);
+    //             this.statusBar.setPercentage(this.character.energy);
+    //             console.log('Collision with Character, energy:', this.character.energy);
+    //         } 
+    //      });
+    // }
+    // checkSmallChickenCollision() {
+    //     this.level.smallChickens.forEach((smallChicken) => {
+    //         if (this.character.isColliding(smallChicken) && !this.character.isAboveGround() && this.character.speedY  == 0 ) {
+    //             this.character.hit(2);
+    //             this.statusBar.setPercentage(this.character.energy);
+    //             console.log('Collision with Character, energy:', this.character.energy);
+    //         } 
+    //      });
+    // }
     
     checkEnbossCollision() {
         this.level.endboss.forEach((endboss) => {
@@ -88,16 +118,33 @@ class World {
     }
 
     checkChickenDead() {
-        this.level.enemies.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy) && this.character.speedY < 0) {
-                 this.level.enemies.splice(index,1);
-                 this.character.speedY = 20;          //character jumps up little bit if colliding from top 
+        this.level.chickens.forEach((enemy, index) => {
+            if (!enemy.isDead && this.character.isColliding(enemy) && this.character.speedY < 0) {
+                enemy.kill();
+                this.character.speedY = 20;     //character jumps up little bit if colliding from top
+                setTimeout(() => {
+                    this.level.chickens.splice(index,1); 
+                }, 300);
+                 console.log('CHICKEN IS DEAD!');
+            }
+         });
+        
+    }
+    checkSmallChickenDead() {
+        this.level.smallChickens.forEach((enemy, index) => {
+            if (!enemy.isDead && this.character.isColliding(enemy) && this.character.speedY < 0) {
+                enemy.kill();
+                this.character.speedY = 20;     //character jumps up little bit if colliding from top
+                setTimeout(() => {
+                    this.level.smallChickens.splice(index,1); 
+                }, 300);
                  console.log('CHICKEN IS DEAD!');
             }
          });
         
     }
 
+    
     checkCoinCollision() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
@@ -109,6 +156,7 @@ class World {
          });
     }
 
+
     checkBottleCollision() {
         this.level.botlles.forEach((bottle, index) => {
             if (this.character.isColliding(bottle)) {
@@ -119,12 +167,6 @@ class World {
             }
          });
     }
-
-    
-
-
-
-   
 
 
     draw() {
@@ -148,7 +190,8 @@ class World {
 
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.chickens);
+        this.addObjectsToMap(this.level.smallChickens);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.level.botlles);
         this.addObjectsToMap(this.level.coins);
@@ -167,6 +210,7 @@ class World {
 
     }
 
+
     drawAmountOfCollectedObjects() {
         this.ctx.font = '30px Times New Roman';
         this.ctx.fillStyle = 'white';
@@ -174,7 +218,6 @@ class World {
         this.ctx.fillText(this.bottlesCollected, 160, 92);   // number of bottles
     }
 
-    
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -182,22 +225,14 @@ class World {
         });
     }
 
+
     addToMap(mo) {
-
-        if (mo.otherDirection) {
-            this.flipImage(mo);
-        }
-
+        if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
-
         mo.drawFrame(this.ctx);
-
-        if (mo.otherDirection) {
-            this.flipImageBack(mo);
-        }
-
-
+        if (mo.otherDirection) this.flipImageBack(mo);
     }
+
 
     flipImage(mo) {
         this.ctx.save();
@@ -205,6 +240,7 @@ class World {
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
+
 
     flipImageBack(mo) {
         mo.x = mo.x * -1;

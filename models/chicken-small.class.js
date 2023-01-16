@@ -3,6 +3,7 @@ class SmallChicken extends MovableObject {
     y = 385;
     height = 45;
     width = 45;
+    isDead = false;
 
     
     IMAGES_WALKING = [
@@ -36,25 +37,27 @@ class SmallChicken extends MovableObject {
             this.moveLeft();
         },1000/60)
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 200);
+        // setInterval(() => {
+        //     this.playAnimation(this.IMAGES_WALKING);
+        // }, 200);
 
-        // this.animateChickenDeadOrWalking();
+        this.animateChickenDeadOrWalking();
 
     }
 
     animateChickenDeadOrWalking() {
         setInterval(() => {
-            if (this.isDead) {
-                this.playAnimation(this.IMAGE_DEAD)
-                
+            if (this.energy == 0 )  {
+                this.playAnimation(this.IMAGE_DEAD);
+                // console.log('DEAD IMG SHOWING');
             } else {
-                this.playAnimation(this.IMAGES_WALKING)
+                this.playAnimation(this.IMAGES_WALKING);
             }
             
         }, 125);
     }
+
+    
 
 
 

@@ -7,7 +7,7 @@ class Endboss extends MovableObject {
     offset = {
         top: 100,
         bottom: 15,
-        left: 50,
+        left: 20,
         right: 50
     };
 

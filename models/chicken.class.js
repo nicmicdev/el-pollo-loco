@@ -11,9 +11,14 @@ class Chicken extends MovableObject {
         'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
 
+    IMAGE_DEAD = [
+        'img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+    ];
+
     constructor() {
         super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGE_DEAD);
 
 
         this.x = 250 + Math.random() * 5000; //Zahl zwischen 200 und 700
@@ -30,10 +35,24 @@ class Chicken extends MovableObject {
             this.moveLeft();
         },1000/60)
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 200);
+        // setInterval(() => {
+        //     this.playAnimation(this.IMAGES_WALKING);
+        // }, 200);
 
+        this.animateChickenDeadOrWalking();
+
+    }
+
+    animateChickenDeadOrWalking() {
+        setInterval(() => {
+            if (this.energy == 0 )  {
+                this.playAnimation(this.IMAGE_DEAD);
+                // console.log('DEAD IMG SHOWING');
+            } else {
+                this.playAnimation(this.IMAGES_WALKING);
+            }
+            
+        }, 125);
     }
 
 
