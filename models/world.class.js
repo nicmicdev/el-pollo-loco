@@ -45,6 +45,7 @@ class World {
             this.checkEnbossCollision();
             this.checkThrowObjects();
             this.checkThrowCollision();
+            this.checkDistanceToEndboss();
 
         }, 200);
     }
@@ -60,6 +61,17 @@ class World {
         }, 500/60);
     }
 
+    checkDistanceToEndboss() {
+        if (this.character.x > 4400) {
+            this.endboss.isNear = true;
+            // console.log('IS NEAR!!', this.endboss.isNear);
+            
+        } 
+        // else {
+        //     this.endboss.isNear = false;
+        // }
+    }
+
 
     checkThrowObjects() {
         if (this.keyboard.D && this.bottlesCollected > 0 && this.character.otherDirection == false) {
@@ -73,6 +85,7 @@ class World {
     checkThrowCollision() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle)) {
+                this.endboss.hit(10);
                 console.log('ENDBOSS HIT');
             }
          });
@@ -144,7 +157,7 @@ class World {
         
     }
 
-    
+
     checkCoinCollision() {
         this.level.coins.forEach((coin, index) => {
             if (this.character.isColliding(coin)) {
@@ -212,8 +225,8 @@ class World {
 
 
     drawAmountOfCollectedObjects() {
-        this.ctx.font = '30px Times New Roman';
-        this.ctx.fillStyle = 'white';
+        this.ctx.font = '30px zabras';
+        this.ctx.fillStyle = 'black';
         this.ctx.fillText(this.coinsCollected, 70, 92);     // number of coins
         this.ctx.fillText(this.bottlesCollected, 160, 92);   // number of bottles
     }

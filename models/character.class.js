@@ -100,6 +100,7 @@ class Character extends MovableObject {
 
             if (this.isDead()){
                 this.playAnimation(this.IMAGES_DEAD);
+                this.speedY = 5;
             
             } else if (this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT);

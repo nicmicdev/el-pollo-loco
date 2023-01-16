@@ -1,9 +1,19 @@
+/* FONT */
+
+@font-face {
+    font-family: 'zabras';
+    src: url('fonts/zabars.ttf') format('truetype'); 
+         
+}  
+
+/* MAIN CSS */
+
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Courier New', Courier, monospace ;
-    color: orange;
+    font-family: 'zabras', Arial, Helvetica, sans-serif ;
+    background-image: url('img/bg2.jpg');
 }
 
 canvas {
