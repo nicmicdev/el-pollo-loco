@@ -38,7 +38,7 @@ class ThrowableObject extends MovableObject {
         }, 25);
 
         setInterval(() => {
-            if (this.y > 250) {
+            if (this.y > 200) {
                 this.playAnimation(this.IMAGES_SPLASH);
 
             } else {

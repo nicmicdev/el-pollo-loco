@@ -1,7 +1,7 @@
 /* FONT */
 
 @font-face {
-    font-family: 'zabras';
+    font-family: 'zabars';
     src: url('fonts/zabars.ttf') format('truetype'); 
          
 }  
@@ -12,12 +12,75 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'zabras', Arial, Helvetica, sans-serif ;
+    font-family: 'zabars', Arial, Helvetica, sans-serif ;
     background-image: url('img/bg2.jpg');
 }
 
 canvas {
-    margin-top: 220px;
     background-color: black;
     border-radius: 30px;
+    position: absolute;
+    top: 0;
+}
+
+.fullscreen {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.content {
+    margin-top: 220px;
+    width: 720px;
+    height: 480px;
+    position: relative;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.endscreen {
+    height: 480px;
+    width: 720px;
+    border-radius: 30px;
+    position: absolute;
+    /* top: 228px; */
+
+    
+}
+
+.gameover-msg {
+    font-size: 70px;
+    position: absolute;
+    top: 32px;
+    width: 720px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.start-btn-container {
+    width: 720px;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.start-btn {
+    height: 50px;
+    width: 100px;
+    position: absolute;
+    bottom: 8px;
+    /* left: 300px; */
+    font-family: 'zabars';
+    font-size: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgb(255, 177, 31);
+    cursor: pointer;
+}
+
+.start-btn:hover {
+    background-color:rgb(246, 160, 0);
 }

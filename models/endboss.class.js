@@ -3,7 +3,7 @@ class Endboss extends MovableObject {
     height = 400;
     width = 250;
     y = 55;
-    speed = 1;
+    speed = 0.35;
 
     offset = {
         top: 100,
@@ -11,7 +11,8 @@ class Endboss extends MovableObject {
         left: 20,
         right: 50
     };
-    isNear = false;
+    startWalking = false;
+    startAttack = false;
 
 
 
@@ -72,17 +73,39 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-    animate() {        
+    animate() {     
         setInterval(() => {
-        this.playAnimation(this.IMAGES_STANDING)
+            if (this.startWalking) {
+                this.moveLeft();
+                // console.log('ENDBOSS STARTS WALKING');
+            }
+        },1000/60)
+        
+        setInterval(() => {
+            
+            if (this.isDead()) {
+                this.speed = 0;
+                this.playAnimation(this.IMAGES_DEAD);   
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.startAttack) {
+                this.playAnimation(this.IMAGES_WALKING);
+                this.speed = 1.5;
+            } else if (this.startWalking) {
+                this.playAnimation(this.IMAGES_WALKING);
+            } 
+            else {
+                this.playAnimation(this.IMAGES_STANDING);
+            }
+
+            
         }, 200);
     }
 
     
+
+
     // setInterval(() => {
-    //     if (this.isNear) {
-    //         this.moveLeft();
-    //         // console.log('CHICKENS STARTS WALKING');
-    //     }
-    //     },1000/60) 
+    //     this.playAnimation(this.IMAGES_STANDING)
+    //     }, 200);
 }

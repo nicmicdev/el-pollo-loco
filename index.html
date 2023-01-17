@@ -27,11 +27,40 @@
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 </head>
-<body onload="init()">
-    
-    <!-- <h1>EL Pollo Loco</h1> -->
+<body>
 
-    <canvas id="canvas" width="720px" height="480px"></canvas>
+    <div id="fullscreen" class="content">
+
+        
+        <canvas id="canvas" width="720px" height="480px"></canvas>
+        
+        <img id="startscreen" class="endscreen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
+        
+        <img id="gameover" src="img/9_intro_outro_screens/game_over/game over.png" class="endscreen d-none">
+        
+        <div id="gameover-msg" class="gameover-msg d-none">
+            <span>YOU WON!</span>
+        </div>
+        
+        
+        <img id="lost" src="img/9_intro_outro_screens/game_over/you lost.png" class="endscreen d-none">
+        
+        <div id="start-btn-container" class="start-btn-container">
+            <button id="start-btn" class="start-btn" onclick="init()">START</button>
+        </div>
+
+
+    
+        
+    
+    </div>
+    
+    
+    <br><br><br>
+    <button onclick="fullscreen()">fullscreen</button>
+    
+    
+    
     
 </body>
 </html>

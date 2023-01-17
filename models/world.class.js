@@ -1,7 +1,7 @@
 class World {
 
     character = new Character();
-    endboss = new Endboss();
+    endboss = level1.endboss[0];
 
     level = level1;
     canvas;
@@ -12,7 +12,7 @@ class World {
     statusBottles = new StatusBottles();
     statusCoins = new StatusCoins();
     throwableObjects = [];
-    bottlesCollected = 10;
+    bottlesCollected = 20;
     coinsCollected = 0;
 
 
@@ -38,18 +38,17 @@ class World {
 
     slowInterval() {
         setInterval(() => {
-            // this.checkChickenCollision();
-            // this.checkSmallChickenCollision();
             this.checkEnemyCollision(this.level.chickens,5);
             this.checkEnemyCollision(this.level.smallChickens, 2);
             this.checkEnbossCollision();
             this.checkThrowObjects();
             this.checkThrowCollision();
             this.checkDistanceToEndboss();
+            this.checkBehindEndboss();
+            this.checkEndscreen();
 
         }, 200);
     }
-
 
     fastInterval() {
         setInterval(() => {
@@ -62,19 +61,12 @@ class World {
     }
 
     checkDistanceToEndboss() {
-        if (this.character.x > 4400) {
-            this.endboss.isNear = true;
-            // console.log('IS NEAR!!', this.endboss.isNear);
-            
-        } 
-        // else {
-        //     this.endboss.isNear = false;
-        // }
+        if (this.character.x > 4400) this.endboss.startWalking = true;          
     }
 
 
     checkThrowObjects() {
-        if (this.keyboard.D && this.bottlesCollected > 0 && this.character.otherDirection == false) {
+        if (this.keyboard.D && this.bottlesCollected > 0 && this.character.otherDirection == false && !this.endboss.isHurt()&& !this.endboss.isDead()) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
             this.bottlesCollected--;
@@ -84,9 +76,11 @@ class World {
 
     checkThrowCollision() {
         this.throwableObjects.forEach((bottle) => {
-            if (this.endboss.isColliding(bottle)) {
-                this.endboss.hit(10);
-                console.log('ENDBOSS HIT');
+            if (this.endboss.isColliding(bottle) && !this.endboss.isDead()) {
+                this.endboss.hit(5);
+                this.endboss.startAttack = true;
+                console.log('ENDBOSS HIT! REMAINING ENERGY:',this.endboss.energy);
+                console.log('SPEED ENDBOSS:', this.endboss.speed);
             }
          });
     }
@@ -122,8 +116,8 @@ class World {
     
     checkEnbossCollision() {
         this.level.endboss.forEach((endboss) => {
-            if (this.character.isColliding(endboss)) {
-                this.character.hit(10);
+            if (this.character.isColliding(endboss) && !this.endboss.isDead()) {
+                this.character.hit(7);
                 this.statusBar.setPercentage(this.character.energy);
                 console.log('Collision with Endboss, energy:', this.character.energy);
             } 
@@ -181,6 +175,28 @@ class World {
          });
     }
 
+    checkEndscreen() {
+        if (this.endboss.isDead()) {
+            document.getElementById('gameover').classList.remove('d-none');  
+            document.getElementById('gameover-msg').classList.remove('d-none');  
+        }
+        if (this.character.isDead()) {
+            setTimeout(() => {
+                document.getElementById('lost').classList.remove('d-none');  
+            }, 1000);
+        }
+    }
+
+    checkBehindEndboss() {
+        if (this.characterIsBehindEndboss()) {
+            this.character.energy = 0;
+        }
+    }
+
+    characterIsBehindEndboss() {
+        return this.character.x - 250 > this.endboss.x
+    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -225,7 +241,7 @@ class World {
 
 
     drawAmountOfCollectedObjects() {
-        this.ctx.font = '30px zabras';
+        this.ctx.font = '30px zabars';
         this.ctx.fillStyle = 'black';
         this.ctx.fillText(this.coinsCollected, 70, 92);     // number of coins
         this.ctx.fillText(this.bottlesCollected, 160, 92);   // number of bottles
@@ -242,7 +258,7 @@ class World {
     addToMap(mo) {
         if (mo.otherDirection) this.flipImage(mo);
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
         if (mo.otherDirection) this.flipImageBack(mo);
     }
 
