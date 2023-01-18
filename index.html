@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="img/favicon2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/icons/favicon2.png" type="image/x-icon">
     <title>El Pollo Loco</title>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
@@ -32,7 +32,7 @@
     <div id="fullscreen" class="content">
 
         
-        <canvas id="canvas" width="720px" height="480px"></canvas>
+        <canvas class="d-none" id="canvas" width="720px" height="480px"></canvas>
         
         <img id="startscreen" class="endscreen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
         
@@ -41,6 +41,22 @@
         <div id="gameover-msg" class="gameover-msg d-none">
             <span>YOU WON!</span>
         </div>
+
+        <!-- <div class="menu-btn-container">
+            <button id="menu-btn" class="start-btn" onclick="openMenu()">MENU</button>
+        </div> -->
+
+        <div class="popup-container">
+            
+            <div class="menu">
+
+            </div>
+
+            <div id="overlay" class="overlay d-none">
+
+            </div>
+
+        </div>
         
         
         <img id="lost" src="img/9_intro_outro_screens/game_over/you lost.png" class="endscreen d-none">
@@ -48,16 +64,21 @@
         <div id="start-btn-container" class="start-btn-container">
             <button id="start-btn" class="start-btn" onclick="init()">START</button>
         </div>
+        
+        <button id="close-fullscreen-btn" class="start-btn d-none" onclick="closeFullscreen()">close fullscreen</button>
 
 
     
         
     
     </div>
+
+   
+    
     
     
     <br><br><br>
-    <button onclick="fullscreen()">fullscreen</button>
+    <button onclick="fullscreen()" style="position: absolute; top: 100px">fullscreen</button>
     
     
     
