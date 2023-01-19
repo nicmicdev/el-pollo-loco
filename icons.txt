@@ -5,3 +5,33 @@ FAVICON
 DESERT ILLUSTRATION
 
 Bild von <a href="https://pixabay.com/de/users/mostafaelturkey36-13328910/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4697018">Mostafa Elturkey</a> auf <a href="https://pixabay.com/de//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4697018">Pixabay</a>
+
+TURN PHONE // RESTART // MUSIC // FULLSCREEN // PLAYLIST// INFO //RIGHT ARROW// LEFT ARROW // D
+<a href="https://www.flaticon.com/free-icons/phone" title="phone icons">Phone icons created by Freepik - Flaticon</a>
+
+GAMECONTROLLER
+<a href="https://www.flaticon.com/free-icons/game-boy-advance" title="game boy advance icons">Game boy advance icons created by Ayub Irawan - Flaticon</a>
+
+SOUND + MUTE
+<a href="https://www.flaticon.com/free-icons/speaker" title="speaker icons">Speaker icons created by Pixel perfect - Flaticon</a>
+
+MUSIC MUTE 
+<a href="https://www.flaticon.com/free-icons/no-sound" title="no sound icons">No sound icons created by DenIcon - Flaticon</a>
+
+CLOSE FULLSCREEN
+<a href="https://www.flaticon.com/free-icons/fullscreen" title="fullscreen icons">Fullscreen icons created by deemakdaksina - Flaticon</a>
+
+SPACE 
+<a href="https://www.flaticon.com/free-icons/ui" title="ui icons">Ui icons created by Bharat Icons - Flaticon</a>
+
+BOTTLE 
+<a href="https://www.flaticon.com/free-icons/wine-bottle" title="wine bottle icons">Wine bottle icons created by LAFS - Flaticon</a>
+
+mArrows
+<a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Kirill Kazachek - Flaticon</a>
+
+MUTE 
+<a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by Google - Flaticon</a>
+
+MUSIC MUTE
+<a href="https://www.flaticon.com/free-icons/mute" title="mute icons">Mute icons created by exomoon design studio - Flaticon</a>

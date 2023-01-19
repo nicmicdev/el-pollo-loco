@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +17,7 @@
     <script src="models/status-bar.class.js"></script>
     <script src="models/status-bottles.class.js"></script>
     <script src="models/status-coins.class.js"></script>
-    <script src="models/bottle.class.js"></script> 
+    <script src="models/bottle.class.js"></script>
     <script src="models/coin.class.js"></script>
     <script src="models/world.class.js"></script>
     <script src="models/background-object.js"></script>
@@ -27,17 +28,18 @@
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 </head>
+
 <body>
 
     <div id="fullscreen" class="content">
 
-        
-        <canvas class="d-none" id="canvas" width="720px" height="480px"></canvas>
-        
+
+        <canvas class="#" id="canvas" width="720px" height="480px"></canvas>
+
         <img id="startscreen" class="endscreen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
-        
+
         <img id="gameover" src="img/9_intro_outro_screens/game_over/game over.png" class="endscreen d-none">
-        
+
         <div id="gameover-msg" class="gameover-msg d-none">
             <span>YOU WON!</span>
         </div>
@@ -46,42 +48,128 @@
             <button id="menu-btn" class="start-btn" onclick="openMenu()">MENU</button>
         </div> -->
 
-        <div class="popup-container">
-            
-            <div class="menu">
 
-            </div>
 
-            <div id="overlay" class="overlay d-none">
+        <div id="overlay" onclick="closeMenu('info');closeMenu('controls');closeMenu('sounds')" class="overlay d-none"></div>
 
-            </div>
 
-        </div>
-        
-        
+
+
         <img id="lost" src="img/9_intro_outro_screens/game_over/you lost.png" class="endscreen d-none">
-        
-        <div id="start-btn-container" class="start-btn-container">
-            <button id="start-btn" class="start-btn" onclick="init()">START</button>
+
+        <button id="play-btn" onclick="init()" class="menu-btn play-btn"><img src="img/icons/play.png" alt=""></button>
+        <button id="restart-btn" onclick="restart()" class="menu-btn restart-btn d-none"><img
+                src="img/icons/restart.png"></button>
+
+
+
+        <button onclick="closeFullscreen()" id="close-fullscreen-btn" class="menu-btn d-none"><img src="img/icons/fullscreen-close.png"></button>
+
+        <div id="menu-btn-container">
+            <button onclick="openMenu('info')" id="info-btn" class="menu-btn"><img src="img/icons/info.png"></button>
+            <button onclick="openMenu('controls')" class="menu-btn"><img src="img/icons/game-controller.png"></button>
+            <button onclick="openMenu('sounds')" class="menu-btn"><img src="img/icons/music.png"></button>
+            <button id="fullscreen-btn" onclick="fullscreen()" class="menu-btn"><img src="img/icons/fullscreen.png" alt=""></button>
+            
+
+        </div>
+
+        <button onclick="closeFullscreen()" id="close-fullscreen-btn" class="menu-btn d-none"><img src="img/icons/fullscreen-close.png"></button>
+
+        <div id="controls" class="d-none">
+            
+            <div class="controls-content">
+                <div class="controls-inner-content">
+                    <span>MOVE RIGHT</span>
+                    <img src="img/icons/arrow-right.png">
+                </div>
+                <div class="controls-inner-content">
+                    <span>MOVE LEFT</span>
+                    <img src="img/icons/arrow-left.png" style="margin-left: 11px;">
+                </div>
+                <div class="controls-inner-content">
+                    <span>JUMP</span>
+                    <img src="img/icons/space.png" style="margin-left: 55px ;">
+                </div>
+                <div class="controls-inner-content">
+                    <span>THROW BOTTLE</span>
+                    <img src="img/icons/d.png" style="margin-right: 5px ;">
+                </div>
+            </div>
+            
+            <button onclick="closeMenu('controls')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
+
+            
         </div>
         
-        <button id="close-fullscreen-btn" class="start-btn d-none" onclick="closeFullscreen()">close fullscreen</button>
+        <div id="info" class="d-none">
+            <button onclick="closeMenu('info')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
+            <span style="font-family:'zabars'; font-size: 44px; position: absolute; top: 12px;">STORY</span><br>
+            <ul style="font-family: Arial ;">
+                <li>Pepe Peligrosos Taco was stolen by the <b style="font-family:'zabars'; font-size: 22px">POLLO LOCO</b> (crazy chicken)</li>
+                <li>Help Pepe to recover his Taco</li>
+                <li>Jump on enemies along the way to kill them</li>
+                <li>Collect bottles and coins along the way</li>
+                <li>Defeat the <b style="font-family:'zabars'; font-size: 22px">POLLO LOCO</b> at the end by throwing bottles (D)</li>
+            </ul>
 
+        </div>
 
-    
+        <div id="sounds" class="d-none">
+
+            <div class="sounds-content">
+                <div class="sounds-inner-content">
+                    <span>SOUNDS</span>
+                    <img onclick="soundMute()" id="sound" src="img/icons/sound.png" style="cursor: pointer ;">
+                    <img onclick="soundOn()" id="sound-mute" class="d-none" src="img/icons/sound-mute.png" style="cursor: pointer ;">
+
+                </div>
+                <div class="sounds-inner-content">
+                    <span>MUSIC</span>
+                    <img onclick="musicMute()" id="music" src="img/icons/music.png" style="cursor: pointer ;">
+                    <img onclick="musicOn()" id="music-mute" class="d-none" src="img/icons/music-mute.png" style="cursor: pointer ;">
+                </div>
+            </div>
+
         
-    
+
+
+
+            <button onclick="closeMenu('sounds')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
+            
+        </div>
+        
+
+
     </div>
 
-   
+    <div class="turn-phone">
+        <span style="margin-bottom: 32px ;">PLEASE TURN YOUR DEVICE</span>
+        <img src="img/icons/turning-phone.png" alt="">
+        <span style="margin-top: 32px; font-family: 'zabars'; font-size: 32px;">rotate your device to put it in
+            landscape mode</span>
+        <!-- <span style="margin-top: 32px; font-family: 'zabars'; font-size: 32px;">(min. screen width of 720px required)</span> -->
+
+    </div>
+
     
-    
-    
+
+
+
+
+
     <br><br><br>
-    <button onclick="fullscreen()" style="position: absolute; top: 100px">fullscreen</button>
+
     
-    
-    
-    
+
+
+    <!-- <div id="start-btn-container" class="start-btn-container">
+        <button id="start-btn" class="start-btn" onclick="init()">S</button>
+    </div> -->
+    <!-- <button id="close-fullscreen-btn" class="start-btn d-none" onclick="closeFullscreen()">close fullscreen</button> -->
+    <!-- <button onclick="fullscreen()" class="menu-btn" style="position: absolute; top: 100px; width: 150px;">fullscreen</button> -->
+
+
 </body>
+
 </html>

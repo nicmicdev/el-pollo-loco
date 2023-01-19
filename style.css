@@ -39,7 +39,12 @@ canvas {
     width: 720px;
     height: 480px;
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
 }
+
 
 .d-none {
     display: none !important;
@@ -74,15 +79,6 @@ canvas {
     align-items: center;
 }
 
-.menu-btn-container {
-    width: 100%;
-    height: 50px;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .start-btn {
     height: 50px;
@@ -96,24 +92,33 @@ canvas {
 }
 
 
-.start-btn:hover {
+button:hover {
     background-color: rgb(246, 160, 0);
 }
 
+button img {
+    height: 32px;
+    width: 32px;
+}
+
 .menu-btn {
-    height: 50px;
+    /* height: 50px;
     width: 100px;
-    /* left: 300px; */
+    left: 300px;
     font-family: 'zabars';
     font-size: 30px;
     border-radius: 10px;
     border: none;
     background-color: rgb(255, 177, 31);
-    cursor: pointer;
+    cursor: pointer; */
+    height: 40px;
+    width: 75px;
+    font-size: 20px;
+    margin: 8px;
 }
 
 .overlay {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 5;
     position: absolute;
     width: 100%;
@@ -121,6 +126,153 @@ canvas {
     border-radius: 30px;
 }
 
+.turn-phone {
+    display: none;
+    width: 80%;
+    border-radius: 30px;
+    color: black;
+    padding: 16px;
+    font-size: 35px;
+    height: 300px;
+    margin-top: 50px;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.turn-phone img {
+    height: 100px;
+    width: 100px;
+
+}
+
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    background-color: rgb(255, 177, 31);
+    border-radius: 25px;
+    box-shadow: 0px 0px 6px 0px #6c6c6c;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    transition: all .2s ease-in-out;
+}
+
+.play-btn{
+    height: 50px;
+    width: 0px;
+    position: absolute;
+    bottom: 3px;
+    z-index: 2;
+    padding: 27px;
+
+}
+
+#close-fullscreen-btn {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+
+#restart-btn {
+    position: absolute;
+    bottom: 32px;
+}
+
+#menu-btn-container {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+#controls {
+    height: 60%;
+    width: 50%;
+    background-color: rgb(246, 160, 0);
+    z-index: 10;
+    border-radius: 30px;
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#info {
+    height: 80%;
+    width: 80%;
+    background-color: rgb(246, 160, 0);
+    z-index: 10;
+    border-radius: 30px;
+    /* margin-top: 50px; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sounds {
+    height: 50%;
+    width: 50%;
+    background-color: rgb(246, 160, 0);
+    z-index: 10;
+    border-radius: 30px;
+    margin-top: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls-content {
+    height: 80%;
+    width: 80%;
+    margin-top: 12px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.controls-inner-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 24px;
+}
+
+.sounds-content {
+    height: 80%;
+    width: 80%;
+    margin-top: 12px;
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.sounds-inner-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 24px;
+}
+
+ul {
+    height: 70%;
+    position: absolute;
+    top: 10%;
+
+}
+
+ul li {
+    padding: 17px;
+}
 
 /* MOBILE VERSION */
 
@@ -135,33 +287,58 @@ canvas {
         width: 100%;
         height: unset;
         border-radius: 0;
+        display: none;
 
     }
 
-    .gameover-msg{
+    .gameover-msg {
         width: 100%;
         font-size: 50px;
     }
 
     .endscreen {
         border-radius: 0;
-        height: auto;
+        height: 100%;
     }
 
-    
-/* 
+    .turn-phone {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+
+    /* 
     .start-btn-container {
         width: 100%;
 
     } */
+}
+@media only screen and (max-height: 1000px) {
+    .content {
+        margin-top: 32px;
+    }
+}
+@media only screen and (max-height: 550px) {
+    .content {
+        margin-top: 0;
+    }
 }
 
 @media only screen and (max-height: 480px) {
     canvas {
         height: 100vh;
     }
+
     .content {
         margin-top: 0;
         height: 100vh;
+        /* width: 100vw; */
+        display: flex;
+    }
+
+    .turn-phone {
+        display: none;
     }
 }
