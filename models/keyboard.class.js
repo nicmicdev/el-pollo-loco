@@ -50,4 +50,21 @@ document.addEventListener("keyup", (e) => {
 });
 
 
+function mobilePressEvents() {
+    document.getElementById('mRIGHT').addEventListener('touchstart', e => {
+        e.preventDefault();
+        console.log('HUD right pressed');
+        keyboard.RIGHT = true;
+    
+    });
+    
+    document.getElementById('mRIGHT').addEventListener('touchend', e => {
+        e.preventDefault();
+        console.log('HUD right touchend');
+        keyboard.RIGHT = false;
+    
+    });
+    
+
+}
 

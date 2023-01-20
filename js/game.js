@@ -13,6 +13,7 @@ function init() {
     document.getElementById('play-btn').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('info-btn').classList.add('d-none');
+    mobilePressEvents();
 
 }
 
@@ -123,5 +124,25 @@ document.addEventListener('fullscreenchange', (e) => {
         console.log('Close Fullscreen works');
     }
 });
+
+
+// function mobilePressEvents() {
+//     document.getElementById('mRIGHT').addEventListener('touchstart', e => {
+//         e.preventDefault();
+//         console.log('HUD right pressed');
+//         keyboard.RIGHT = true;
+    
+//     });
+    
+//     document.getElementById('mRIGHT').addEventListener('touchend', e => {
+//         e.preventDefault();
+//         console.log('HUD right touchend');
+//         keyboard.RIGHT = false;
+    
+//     });
+    
+
+// }
+
 
 

@@ -274,6 +274,37 @@ ul li {
     padding: 17px;
 }
 
+
+/* HUD - MOBILE CONTROL KEYS */
+
+#hud {
+    position: absolute;
+    bottom: -8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-left {
+    /* width: 120px; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.hud-right {
+    /* width: 120px; */
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#hud button {
+    margin: 16px;
+    border-radius: 100px;
+    width: 45px;
+    height: 45px;    
+}
+
 /* MOBILE VERSION */
 
 @media only screen and (max-width: 720px) {
