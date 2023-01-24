@@ -7,7 +7,6 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
 
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -18,6 +17,7 @@ class MovableObject extends DrawableObject {
             }
         }, 1000 / 35);
     }
+
 
     isAboveGround() {
         if (this instanceof ThrowableObject) {     // Throwable objects should always fall
@@ -48,6 +48,7 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
  
+
     kill() {
         this.isDead = true;
         this.speed =  0;
@@ -68,7 +69,6 @@ class MovableObject extends DrawableObject {
     }
 
 
-
     moveLeft() {
         this.x -= this.speed;
     }
@@ -79,17 +79,7 @@ class MovableObject extends DrawableObject {
         playSound(sound_jump);
     }
 
-    // isColliding(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x &&
-    //         this.y < mo.y + mo.height;
-    // }
     
-    // isCollidingTop(mo) {
-    //     return this.y < mo.y + mo.height;
-    // }
-
     isColliding(object) {
         return this.rightBorder() > this.leftObjectBorder(object) &&
                this.bottomBorder() > this.topObjectBorder(object) &&

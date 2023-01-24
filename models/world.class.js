@@ -2,7 +2,6 @@ class World {
 
     character = new Character();
     endboss = level1.endboss[0];
-
     level = level1;
     canvas;
     ctx;
@@ -93,6 +92,7 @@ class World {
         });
     }
 
+
     checkEnemyCollision(array, damage) {
         array.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !this.character.isAboveGround() && this.character.speedY == 0) {
@@ -114,6 +114,7 @@ class World {
         });
     }
 
+
     checkChickenDead() {
         this.level.chickens.forEach((enemy, index) => {
             if (!enemy.isDead && this.character.isColliding(enemy) && this.character.speedY < 0) {
@@ -127,6 +128,8 @@ class World {
         });
 
     }
+
+
     checkSmallChickenDead() {
         this.level.smallChickens.forEach((enemy, index) => {
             if (!enemy.isDead && this.character.isColliding(enemy) && this.character.speedY < 0) {
@@ -163,41 +166,52 @@ class World {
         });
     }
 
+
     checkEndscreen() {
         if (this.endboss.isDead()) {
-            setTimeout(() => {
-                document.getElementById('gameover').classList.remove('d-none');
-                document.getElementById('gameover-msg').classList.remove('d-none');
-                document.getElementById('restart-btn').classList.remove('d-none');
-                document.getElementById('menu-btn-container').classList.add('d-none');
-                document.getElementById('hud').classList.add('d-none');
-                pauseSound(sound_endboss_attack);
-                pauseSound(music);
-                playSound(sound_game_over);
-                stopGame();
-                
-            }, 1000);
+            this.executeGameOver();
         }
         if (this.character.isDead()) {
-            // this.endboss.speed = 0;
-            setTimeout(() => {
-                document.getElementById('lost').classList.remove('d-none');
-                document.getElementById('restart-btn').classList.remove('d-none');
-                document.getElementById('menu-btn-container').classList.add('d-none');
-                document.getElementById('hud').classList.add('d-none');
-                sound_endboss_attack.pause();
-                pauseSound(music);
-                playSound(sound_lost);
-                stopGame();
-            }, 1000);
+            this.executeYouLost();
         }
     }
+
+
+    executeGameOver() {
+        setTimeout(() => {
+            document.getElementById('gameover').classList.remove('d-none');
+            document.getElementById('gameover-msg').classList.remove('d-none');
+            document.getElementById('restart-btn').classList.remove('d-none');
+            document.getElementById('menu-btn-container').classList.add('d-none');
+            document.getElementById('hud').classList.add('d-none');
+            pauseSound(sound_endboss_attack);
+            pauseSound(music);
+            playSound(sound_game_over);
+            stopGame();
+        }, 1000);
+    }
+
+
+    executeYouLost() {
+        setTimeout(() => {
+            document.getElementById('lost').classList.remove('d-none');
+            document.getElementById('restart-btn').classList.remove('d-none');
+            document.getElementById('menu-btn-container').classList.add('d-none');
+            document.getElementById('hud').classList.add('d-none');
+            sound_endboss_attack.pause();
+            pauseSound(music);
+            playSound(sound_lost);
+            stopGame();
+        }, 1000);
+    }
+
 
     checkBehindEndboss() {
         if (this.characterIsBehindEndboss()) {
             this.character.energy = 0;
         }
     }
+
 
     characterIsBehindEndboss() {
         return this.character.x - 250 > this.endboss.x
@@ -206,42 +220,41 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.camera_x, 0);
-
-
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
-
-
+        this.drawBackground();
         this.ctx.translate(-this.camera_x, 0);
         //---------SPACE FOR FIXED OBJECTS--------------
-        this.addToMap(this.statusBar);
-        this.addToMap(this.statusBottles);
-        this.addToMap(this.statusCoins);
-        this.drawAmountOfCollectedObjects();
+        this.drawFixedObjects();
         //---PUT FIXED OBJECTS IN THE SPACE IN BETWEEN---
         this.ctx.translate(this.camera_x, 0);
+        this.drawMovableObjects();
+        this.drawCollecitbles();
+        this.ctx.translate(-this.camera_x, 0);
+        this.animationFrame();
+    }
 
+    drawBackground() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+    }
 
+    drawMovableObjects() {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.chickens);
         this.addObjectsToMap(this.level.smallChickens);
         this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.throwableObjects); 
+    }
+
+    drawCollecitbles() {
         this.addObjectsToMap(this.level.botlles);
         this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.throwableObjects);
 
+    }
 
-        this.ctx.translate(-this.camera_x, 0);
-
-
-        let self = this;
-        // draw() wird immer wieder aufgerufen
-        requestAnimationFrame(function () {
-            self.draw();
-        })
-
+    drawFixedObjects() {
+        this.drawStatusBars();
+        this.drawAmountOfCollectedObjects();
     }
 
 
@@ -250,6 +263,20 @@ class World {
         this.ctx.fillStyle = 'black';
         this.ctx.fillText(this.coinsCollected, 70, 92);     // number of coins
         this.ctx.fillText(this.bottlesCollected, 160, 92);   // number of bottles
+    }
+
+
+    drawStatusBars() {
+        this.addToMap(this.statusBar);
+        this.addToMap(this.statusBottles);
+        this.addToMap(this.statusCoins);
+    }
+
+    animationFrame() {
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        })
     }
 
 

@@ -7,6 +7,7 @@ class Keyboard {
     D = false; 
 }
 
+
 document.addEventListener("keydown", (e) => {
     if(e.keyCode == 39 && !world.endboss.isDead() && !world.character.isDead()){
         keyboard.RIGHT = true;
@@ -27,6 +28,7 @@ document.addEventListener("keydown", (e) => {
         keyboard.D = true;
     }
 });
+
 
 document.addEventListener("keyup", (e) => {
     if(e.keyCode == 39){
@@ -53,9 +55,10 @@ document.addEventListener("keyup", (e) => {
 function mobileTouchEvents() {
     mRIGHT();
     mLEFT();
-    mTHROW();
     mUP();
+    mTHROW();
 }
+
 
 function mRIGHT(){
     document.getElementById('mRIGHT').addEventListener('touchstart', e => {
@@ -70,6 +73,7 @@ function mRIGHT(){
     });
 }
 
+
 function mLEFT(){
     document.getElementById('mLEFT').addEventListener('touchstart', e => {
         e.preventDefault();
@@ -82,6 +86,8 @@ function mLEFT(){
     
     });
 }
+
+
 function mUP(){
     document.getElementById('mUP').addEventListener('touchstart', e => {
         e.preventDefault();
@@ -94,6 +100,8 @@ function mUP(){
     
     });
 }
+
+
 function mTHROW(){
     document.getElementById('mTHROW').addEventListener('touchstart', e => {
         e.preventDefault();
@@ -106,4 +114,14 @@ function mTHROW(){
     
     });
 }
+
+
+//EVENT LISTENER FOR FULLSCREEN
+document.addEventListener('fullscreenchange', (e) => {
+    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        closeFullscreen();
+        console.log('Close Fullscreen works');
+    }
+});
+
 

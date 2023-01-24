@@ -76,35 +76,13 @@ class Character extends MovableObject {
     }
 
     animate() {
-        this.fastInterval();
-
-        
-        setInterval(() => {
-
-            if (this.isDead()){
-                this.playAnimation(this.IMAGES_DEAD);
-                this.speedY = 5;
-            
-            } else if (this.isHurt()){
-                this.playAnimation(this.IMAGES_HURT);
-            
-            } else if(this.isAboveGround()){
-                this.playAnimation(this.IMAGES_JUMPING);
-            } else {                                                                            //TODO: implementing else if (bc its shorter)
-                if (world.keyboard.RIGHT || world.keyboard.LEFT) {  
-                    // WALK ANIMATION
-                    this.playAnimation(this.IMAGES_WALKING);
-                } else {
-                    this.playAnimation(this.IMAGES_STANDING);
-                }
-            }
-        }, 50);
-
+        this.characterMovement();
+        this.characterAnimations();
     }
 
-    fastInterval() {
+    characterMovement() {
         setInterval(() => {
-            if (world.keyboard.RIGHT && this.x < world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
             }
@@ -112,9 +90,23 @@ class Character extends MovableObject {
                 this.moveLeft();
                 this.otherDirection = true;
             }
-            if(world.keyboard.SPACE && !this.isAboveGround()) this.jump();
-            world.camera_x = -this.x + 100;
+            if(this.world.keyboard.SPACE && !this.isAboveGround()) this.jump();
+            this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
+    }
+
+    characterAnimations() {
+        setInterval(() => {
+            if (this.isDead()){
+                this.playAnimation(this.IMAGES_DEAD);
+                this.speedY = 5;
+            } else if (this.isHurt())this.playAnimation(this.IMAGES_HURT);
+            else if(this.isAboveGround()) this.playAnimation(this.IMAGES_JUMPING);
+            else {                                                                       
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) this.playAnimation(this.IMAGES_WALKING);
+                else this.playAnimation(this.IMAGES_STANDING);
+            }
+        }, 50);
     }
 
 }
