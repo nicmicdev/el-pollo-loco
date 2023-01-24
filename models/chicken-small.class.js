@@ -23,7 +23,7 @@ class SmallChicken extends MovableObject {
         this.loadImages(this.IMAGE_DEAD);
 
 
-        this.x = 250 + Math.random() * 7000; // number between
+        this.x = 350 + Math.random() * 7000; // number between
 
         this.speed = 0.15 + Math.random()*0.25;
 
