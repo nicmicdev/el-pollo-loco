@@ -23,7 +23,7 @@ class SmallChicken extends MovableObject {
         this.loadImages(this.IMAGE_DEAD);
 
 
-        this.x = 250 + Math.random() * 1000; //Zahl zwischen 200 und 700
+        this.x = 250 + Math.random() * 7000; // number between
 
         this.speed = 0.15 + Math.random()*0.25;
 
@@ -36,13 +36,7 @@ class SmallChicken extends MovableObject {
         setInterval(() => {
             this.moveLeft();
         },1000/60)
-
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_WALKING);
-        // }, 200);
-
         this.animateChickenDeadOrWalking();
-
     }
 
     animateChickenDeadOrWalking() {

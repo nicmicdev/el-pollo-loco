@@ -45,7 +45,6 @@ canvas {
     align-items: center;
 }
 
-
 .d-none {
     display: none !important;
 }
@@ -79,7 +78,6 @@ canvas {
     align-items: center;
 }
 
-
 .start-btn {
     height: 50px;
     width: 100px;
@@ -91,7 +89,6 @@ canvas {
     cursor: pointer;
 }
 
-
 button:hover {
     background-color: rgb(246, 160, 0);
 }
@@ -102,15 +99,6 @@ button img {
 }
 
 .menu-btn {
-    /* height: 50px;
-    width: 100px;
-    left: 300px;
-    font-family: 'zabars';
-    font-size: 30px;
-    border-radius: 10px;
-    border: none;
-    background-color: rgb(255, 177, 31);
-    cursor: pointer; */
     height: 40px;
     width: 75px;
     font-size: 20px;
@@ -144,7 +132,6 @@ button img {
     width: 100px;
 
 }
-
 
 button {
     display: flex;
@@ -281,7 +268,7 @@ ul li {
     position: absolute;
     bottom: -8px;
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: space-between;
 }
 
@@ -305,7 +292,7 @@ ul li {
     height: 45px;    
 }
 
-/* MOBILE VERSION */
+/* MOBILE CSS */
 
 @media only screen and (max-width: 720px) {
     canvas {
@@ -339,16 +326,19 @@ ul li {
 
     }
 
-
     /* 
     .start-btn-container {
         width: 100%;
 
     } */
 }
-@media only screen and (max-height: 1000px) {
+@media only screen and (max-height: 1024px) {
     .content {
         margin-top: 32px;
+    }
+    
+    #hud {
+        display: flex;
     }
 }
 @media only screen and (max-height: 550px) {

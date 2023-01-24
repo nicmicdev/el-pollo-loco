@@ -14,13 +14,11 @@ class DrawableObject {
         right: 0
     };
 
-
-
-
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
+
 
     draw(ctx) {
         try {
@@ -29,9 +27,9 @@ class DrawableObject {
             console.warn('Error loading image', e);
             console.log ('Could not load image', this.img.src);
             debugger;
-        }
-        
+        }    
     }
+
 
     loadImages(arr) {
         arr.forEach((path) => {
@@ -41,9 +39,7 @@ class DrawableObject {
         });
     }
 
-   
-
-
+    
     drawFrame(ctx) {
         if (this instanceof Character)  {
             ctx.beginPath();

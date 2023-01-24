@@ -76,24 +76,7 @@ class Character extends MovableObject {
     }
 
     animate() {
-        
-        setInterval(() => {
-            // this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                // this.walking_sound.play();
-                this.otherDirection = false;
-            }
-            if(this.world.keyboard.LEFT && this.x > -500 ) {
-                this.moveLeft();
-                // this.walking_sound.play();
-                this.otherDirection = true;
-            }
-            if(this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-            }
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 60);
+        this.fastInterval();
 
         
         setInterval(() => {
@@ -108,7 +91,7 @@ class Character extends MovableObject {
             } else if(this.isAboveGround()){
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {                                                                            //TODO: implementing else if (bc its shorter)
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {  
+                if (world.keyboard.RIGHT || world.keyboard.LEFT) {  
                     // WALK ANIMATION
                     this.playAnimation(this.IMAGES_WALKING);
                 } else {
@@ -117,6 +100,21 @@ class Character extends MovableObject {
             }
         }, 50);
 
+    }
+
+    fastInterval() {
+        setInterval(() => {
+            if (world.keyboard.RIGHT && this.x < world.level.level_end_x) {
+                this.moveRight();
+                this.otherDirection = false;
+            }
+            if(this.world.keyboard.LEFT && this.x > -500 ) {
+                this.moveLeft();
+                this.otherDirection = true;
+            }
+            if(world.keyboard.SPACE && !this.isAboveGround()) this.jump();
+            world.camera_x = -this.x + 100;
+        }, 1000 / 60);
     }
 
 }

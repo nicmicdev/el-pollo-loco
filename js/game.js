@@ -2,19 +2,21 @@ let canvas;
 let world;
 let fullscreenActive;
 let keyboard = new Keyboard();
-
+let gameStarted = false;
+let soundIsOn = true;
 
 
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-    // console.log('My character is', world.character);
     document.getElementById('startscreen').classList.add('d-none');    
     document.getElementById('play-btn').classList.add('d-none');
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('info-btn').classList.add('d-none');
-    mobilePressEvents();
-
+    document.getElementById('hud').classList.remove('d-none');
+    mobileTouchEvents();
+    music.play();
+    gameStarted = true;
 }
 
 function fullscreen() {
@@ -86,63 +88,11 @@ function showOverlay() {
     document.getElementById('overlay').classList.remove('d-none');
 }
 
-
+function stopGame() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
 
 function restart(){
     window.location.href = 'index.html';
 }
-
-function soundMute() {
-    document.getElementById('sound').classList.add('d-none');
-    document.getElementById('sound-mute').classList.remove('d-none');
-}
-
-
-function soundOn() {
-    document.getElementById('sound').classList.remove('d-none');
-    document.getElementById('sound-mute').classList.add('d-none');
-}
-
-
-function musicMute() {
-    document.getElementById('music').classList.add('d-none');
-    document.getElementById('music-mute').classList.remove('d-none');
-}
-
-
-function musicOn() {
-    document.getElementById('music').classList.remove('d-none');
-    document.getElementById('music-mute').classList.add('d-none');
-}
-
-//EVENT LISTENERS
-
-
-document.addEventListener('fullscreenchange', (e) => {
-    if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-        closeFullscreen();
-        console.log('Close Fullscreen works');
-    }
-});
-
-
-// function mobilePressEvents() {
-//     document.getElementById('mRIGHT').addEventListener('touchstart', e => {
-//         e.preventDefault();
-//         console.log('HUD right pressed');
-//         keyboard.RIGHT = true;
-    
-//     });
-    
-//     document.getElementById('mRIGHT').addEventListener('touchend', e => {
-//         e.preventDefault();
-//         console.log('HUD right touchend');
-//         keyboard.RIGHT = false;
-    
-//     });
-    
-
-// }
-
-
 

@@ -50,21 +50,60 @@ document.addEventListener("keyup", (e) => {
 });
 
 
-function mobilePressEvents() {
+function mobileTouchEvents() {
+    mRIGHT();
+    mLEFT();
+    mTHROW();
+    mUP();
+}
+
+function mRIGHT(){
     document.getElementById('mRIGHT').addEventListener('touchstart', e => {
         e.preventDefault();
-        console.log('HUD right pressed');
         keyboard.RIGHT = true;
     
     });
-    
     document.getElementById('mRIGHT').addEventListener('touchend', e => {
         e.preventDefault();
-        console.log('HUD right touchend');
         keyboard.RIGHT = false;
     
     });
-    
+}
 
+function mLEFT(){
+    document.getElementById('mLEFT').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    
+    });
+    document.getElementById('mLEFT').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    
+    });
+}
+function mUP(){
+    document.getElementById('mUP').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    
+    });
+    document.getElementById('mUP').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    
+    });
+}
+function mTHROW(){
+    document.getElementById('mTHROW').addEventListener('touchstart', e => {
+        e.preventDefault();
+        keyboard.D = true;
+    
+    });
+    document.getElementById('mTHROW').addEventListener('touchend', e => {
+        e.preventDefault();
+        keyboard.D = false;
+    
+    });
 }
 

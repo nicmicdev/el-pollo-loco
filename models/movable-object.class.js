@@ -7,6 +7,7 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
 
 
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -51,8 +52,6 @@ class MovableObject extends DrawableObject {
         this.isDead = true;
         this.speed =  0;
         this.energy = 0;
-        console.log('Kill functions works!');
-        console.log('isDead =',this.isDead,'speed=', this.speed, 'ENERGY',this.energy);
     }
 
 
@@ -77,6 +76,7 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 30;
+        playSound(sound_jump);
     }
 
     // isColliding(mo) {

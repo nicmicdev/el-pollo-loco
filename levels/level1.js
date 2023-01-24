@@ -3,22 +3,38 @@ const level1 = new Level(
     // CHICKENS 
     
     [                     
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
-        // new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
+        new Chicken(),
        
     ],
 
     // SMALL CHICKENS
 
     [
-        // new SmallChicken(),
-        // new SmallChicken(),
-        // new SmallChicken(),
-        // new SmallChicken(),
-        // new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
+        new SmallChicken(),
     ],
 
     // ENDBOSS 
@@ -30,34 +46,47 @@ const level1 = new Level(
     // BOTTLES
     
     [   //ground
-        // new Bottle(600, 370, 0),
-        // new Bottle(1300, 370, 1),
-        // new Bottle(1700, 370, 1),
-        // new Bottle(2300, 370, 0),
-        // new Bottle(2600, 370, 0),
-        // new Bottle(2700, 370, 1),
-        // new Bottle(3100, 370, 1),
-        // new Bottle(3400, 370, 1),
-        // new Bottle(4150, 370, 0),
+        new Bottle(600, 370, 0),
+        new Bottle(1300, 370, 1),
+        new Bottle(1700, 370, 1),
+        new Bottle(2300, 370, 0),
+        new Bottle(2600, 370, 0),
+        new Bottle(2700, 370, 1),
+        new Bottle(3100, 370, 1),
+        new Bottle(3400, 370, 1),
+        new Bottle(4150, 370, 0),
         
-        // //air 
-        // new Bottle(550, 150, 2),
-        // new Bottle(1050, 150, 2),
-        // new Bottle(1550, 150, 2),
-        // new Bottle(2050, 150, 2),
-        // new Bottle(2550, 150, 2),
+        //air 
+        new Bottle(550, 150, 2),
+        new Bottle(1050, 150, 2),
+        new Bottle(1550, 150, 2),
+        new Bottle(2050, 150, 2),
+        new Bottle(2550, 150, 2),
+        new Bottle(3050, 150, 2),
+        new Bottle(3550, 150, 2),
+        new Bottle(4050, 150, 2),
+        new Bottle(4550, 150, 2),
+        new Bottle(5050, 150, 2),
         
     ],
 
     //COINS
 
     [
-        // new Coin (400, 150),
-        // new Coin (800, 150),
-        // new Coin (1200, 150),
-        // new Coin (1600, 150),
-        // new Coin (2000, 150),
-        // new Coin (2400, 150),
+        new Coin (400, 150),
+        new Coin (800, 150),
+        new Coin (1200, 150),
+        new Coin (1600, 150),
+        new Coin (2000, 150),
+        new Coin (2400, 150),
+        new Coin (2600, 150),
+        new Coin (3000, 150),
+        new Coin (3400, 150),
+        new Coin (3800, 150),
+        new Coin (4200, 150),
+        new Coin (4600, 150),
+        new Coin (4800, 150),
+        new Coin (5200, 150),
 
     ],
 

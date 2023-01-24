@@ -26,58 +26,31 @@
     <script src="models/throwable-object.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="js/sound.js"></script>
     <script src="js/game.js"></script>
 </head>
 
 <body>
 
     <div id="fullscreen" class="content">
-
-
+        <!-- CANVAS -->
         <canvas class="#" id="canvas" width="720px" height="480px"></canvas>
-
+        
+        <!-- STARTSCREEN -->
         <img id="startscreen" class="endscreen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
-
-        <img id="gameover" src="img/9_intro_outro_screens/game_over/game over.png" class="endscreen d-none">
-
-        <div id="gameover-msg" class="gameover-msg d-none">
-            <span>YOU WON!</span>
-        </div>
-
-        <!-- <div class="menu-btn-container">
-            <button id="menu-btn" class="start-btn" onclick="openMenu()">MENU</button>
-        </div> -->
-
-
-
-        <div id="overlay" onclick="closeMenu('info');closeMenu('controls');closeMenu('sounds')" class="overlay d-none"></div>
-
-
-
-
-        <img id="lost" src="img/9_intro_outro_screens/game_over/you lost.png" class="endscreen d-none">
-
         <button id="play-btn" onclick="init()" class="menu-btn play-btn"><img src="img/icons/play.png" alt=""></button>
-        <button id="restart-btn" onclick="restart()" class="menu-btn restart-btn d-none"><img
-                src="img/icons/restart.png"></button>
-
-
-
+        <button id="restart-btn" onclick="restart()" class="menu-btn restart-btn d-none"><img src="img/icons/restart.png"></button>
         <button onclick="closeFullscreen()" id="close-fullscreen-btn" class="menu-btn d-none"><img src="img/icons/fullscreen-close.png"></button>
 
+        <!-- MENU -->
         <div id="menu-btn-container">
             <button onclick="openMenu('info')" id="info-btn" class="menu-btn"><img src="img/icons/info.png"></button>
             <button onclick="openMenu('controls')" class="menu-btn"><img src="img/icons/game-controller.png"></button>
             <button onclick="openMenu('sounds')" class="menu-btn"><img src="img/icons/music.png"></button>
             <button id="fullscreen-btn" onclick="fullscreen()" class="menu-btn"><img src="img/icons/fullscreen.png" alt=""></button>
-            
-
         </div>
-
-        <button onclick="closeFullscreen()" id="close-fullscreen-btn" class="menu-btn d-none"><img src="img/icons/fullscreen-close.png"></button>
-
+        
         <div id="controls" class="d-none">
-            
             <div class="controls-content">
                 <div class="controls-inner-content">
                     <span>MOVE RIGHT</span>
@@ -96,10 +69,7 @@
                     <img src="img/icons/d.png" style="margin-right: 5px ;">
                 </div>
             </div>
-            
             <button onclick="closeMenu('controls')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
-
-            
         </div>
         
         <div id="info" class="d-none">
@@ -112,17 +82,14 @@
                 <li>Collect bottles and coins along the way</li>
                 <li>Defeat the <b style="font-family:'zabars'; font-size: 22px">POLLO LOCO</b> at the end by throwing bottles (D)</li>
             </ul>
-
         </div>
 
         <div id="sounds" class="d-none">
-
             <div class="sounds-content">
                 <div class="sounds-inner-content">
                     <span>SOUNDS</span>
                     <img onclick="soundMute()" id="sound" src="img/icons/sound.png" style="cursor: pointer ;">
                     <img onclick="soundOn()" id="sound-mute" class="d-none" src="img/icons/sound-mute.png" style="cursor: pointer ;">
-
                 </div>
                 <div class="sounds-inner-content">
                     <span>MUSIC</span>
@@ -131,59 +98,42 @@
                 </div>
             </div>
 
-        
-
-
-
-            <button onclick="closeMenu('sounds')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
+           <button onclick="closeMenu('sounds')" style="position: absolute ; bottom: 16px; color: white; background-color: #2EA9CE;">CLOSE</button>
             
         </div>
 
-        <div id="hud">
+        <div id="overlay" onclick="closeMenu('info');closeMenu('controls');closeMenu('sounds')" class="overlay d-none"></div>
+
+        <!-- ENDSCREENS -->
+        <img id="gameover" src="img/9_intro_outro_screens/game_over/game over.png" class="endscreen d-none">
+
+        <div id="gameover-msg" class="gameover-msg d-none">
+            <span>YOU WON!</span>
+        </div>
+
+        <img id="lost" src="img/9_intro_outro_screens/game_over/you lost.png" class="endscreen d-none">
+
+        <div id="hud" class="d-none">
             <div class="hud-left">
-                <button><img src="img/icons/mLEFT.png" alt=""></button>
+                <button id="mLEFT"><img src="img/icons/mLEFT.png" alt=""></button>
                 <button id="mRIGHT"><img src="img/icons/mRIGHT.png" alt=""></button>
             </div>
     
             <div class="hud-right">
-                <button><img src="img/icons/mUP.png" alt=""></button>
-                <button><img src="img/icons/mTHROW.png" alt=""></button>
+                <button id="mUP"><img src="img/icons/mUP.png" alt=""></button>
+                <button id="mTHROW"><img src="img/icons/mTHROW.png" alt=""></button>
             </div>
-    
         </div>
         
-
-
     </div>
 
+    <!-- TURN PHONE MESSAGE -->
     <div class="turn-phone">
         <span style="margin-bottom: 32px ;">PLEASE TURN YOUR DEVICE</span>
         <img src="img/icons/turning-phone.png" alt="">
         <span style="margin-top: 32px; font-family: 'zabars'; font-size: 32px;">rotate your device to put it in
             landscape mode</span>
-        <!-- <span style="margin-top: 32px; font-family: 'zabars'; font-size: 32px;">(min. screen width of 720px required)</span> -->
-
     </div>
-
-    
-
-    
-
-
-
-
-
-    <br><br><br>
-
-    
-
-
-    <!-- <div id="start-btn-container" class="start-btn-container">
-        <button id="start-btn" class="start-btn" onclick="init()">S</button>
-    </div> -->
-    <!-- <button id="close-fullscreen-btn" class="start-btn d-none" onclick="closeFullscreen()">close fullscreen</button> -->
-    <!-- <button onclick="fullscreen()" class="menu-btn" style="position: absolute; top: 100px; width: 150px;">fullscreen</button> -->
-
 
 </body>
 

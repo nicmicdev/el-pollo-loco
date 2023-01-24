@@ -39,7 +39,7 @@ class ThrowableObject extends MovableObject {
             if (this.y > 200) {
                 this.playAnimation(this.IMAGES_SPLASH);
             } else {
-                this.playAnimation(this.IMAGES_ROTATION)
+                this.playAnimation(this.IMAGES_ROTATION);
             }
         }, 100);
     }
