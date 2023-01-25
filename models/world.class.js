@@ -67,9 +67,7 @@ class World {
     checkDistanceToEndboss() {
         if (this.character.x > 4400) {
             this.endboss.startWalking = true;
-            pauseSound(music);
-            playSound(sound_endboss_attack);
-           
+            playSound(sound_endboss_attack); 
         }
     }
 

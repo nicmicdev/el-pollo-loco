@@ -34,12 +34,14 @@ function soundMute() {
     document.getElementById('sound').classList.add('d-none');
     document.getElementById('sound-mute').classList.remove('d-none');
     soundIsOn = false;
+    sound_endboss_attack.pause();
 }
 
 
 function soundOn() {
     document.getElementById('sound').classList.remove('d-none');
     document.getElementById('sound-mute').classList.add('d-none');
+    if (world.endboss.startWalking) sound_endboss_attack.play();
     soundIsOn = true;
 }
 
@@ -54,7 +56,7 @@ function musicMute() {
 function musicOn() {
     document.getElementById('music').classList.remove('d-none');
     document.getElementById('music-mute').classList.add('d-none');
-    if (gameStarted && !world.endboss.startWalking) music.play();
+    music.play();
 }
 
 
@@ -66,3 +68,4 @@ function pauseSound(soundName) {
     soundName.pause();
 }
 
+// if (gameStarted && !world.endboss.startWalking) 

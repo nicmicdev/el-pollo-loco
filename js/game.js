@@ -4,7 +4,8 @@ let world;
 let fullscreenActive;
 let keyboard = new Keyboard();
 let gameStarted = false;
-let soundIsOn = true;
+let soundIsOn = false;
+let musicisOn = false;
 
 
 function init() {
@@ -12,7 +13,6 @@ function init() {
     world = new World(canvas, keyboard);
     hideStartscreen(); 
     mobileTouchEvents();
-    music.play();
     gameStarted = true;
 }
 
@@ -92,6 +92,7 @@ function hideStartscreen() {
     document.getElementById('canvas').classList.remove('d-none');
     document.getElementById('info-btn').classList.add('d-none');
     document.getElementById('hud').classList.remove('d-none');
+    document.getElementById('menu-sounds-btn').classList.remove('d-none');
 }
 
 

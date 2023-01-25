@@ -47,7 +47,7 @@
         <div id="menu-btn-container">
             <button onclick="openMenu('info')" id="info-btn" class="menu-btn"><img src="img/icons/info.png"></button>
             <button onclick="openMenu('controls')" class="menu-btn"><img src="img/icons/game-controller.png"></button>
-            <button onclick="openMenu('sounds')" class="menu-btn"><img src="img/icons/music.png"></button>
+            <button onclick="openMenu('sounds')" id="menu-sounds-btn" class="menu-btn d-none"><img src="img/icons/music.png"></button>
             <button id="fullscreen-btn" onclick="fullscreen()" class="menu-btn"><img src="img/icons/fullscreen.png" alt=""></button>
         </div>
         
@@ -89,13 +89,13 @@
             <div class="sounds-content">
                 <div class="sounds-inner-content">
                     <span>SOUNDS</span>
-                    <img onclick="soundMute()" id="sound" src="img/icons/sound.png" style="cursor: pointer ;">
-                    <img onclick="soundOn()" id="sound-mute" class="d-none" src="img/icons/sound-mute.png" style="cursor: pointer ;">
+                    <img onclick="soundMute()" id="sound" class="d-none" src="img/icons/sound.png" style="cursor: pointer ;">
+                    <img onclick="soundOn()" id="sound-mute"  src="img/icons/sound-mute.png" style="cursor: pointer ;">
                 </div>
                 <div class="sounds-inner-content">
                     <span>MUSIC</span>
-                    <img onclick="musicMute()" id="music" src="img/icons/music.png" style="cursor: pointer ;">
-                    <img onclick="musicOn()" id="music-mute" class="d-none" src="img/icons/music-mute.png" style="cursor: pointer ;">
+                    <img onclick="musicMute()" class="d-none" id="music" src="img/icons/music.png" style="cursor: pointer ;">
+                    <img onclick="musicOn()" id="music-mute"  src="img/icons/music-mute.png" style="cursor: pointer ;">
                 </div>
             </div>
 
