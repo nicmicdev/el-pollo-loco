@@ -8,6 +8,7 @@ class World {
     keyboard;
     camera_x = -100;
     statusBar = new StatusBar();
+    statusEndboss = new StatusEndboss();
     statusBottles = new StatusBottles();
     statusCoins = new StatusCoins();
     throwableObjects = [];
@@ -33,7 +34,9 @@ class World {
     run() {
         this.slowInterval();
         this.fastInterval();
+        
     }
+
 
     slowInterval() {
         setInterval(() => {
@@ -49,6 +52,7 @@ class World {
         }, 200);
     }
 
+
     fastInterval() {
         setInterval(() => {
             this.checkCoinCollision();
@@ -58,6 +62,7 @@ class World {
 
         }, 500 / 60);
     }
+
 
     checkDistanceToEndboss() {
         if (this.character.x > 4400) {
@@ -85,7 +90,8 @@ class World {
     checkThrowCollision() {
         this.throwableObjects.forEach((bottle) => {
             if (this.endboss.isColliding(bottle) && !this.endboss.isDead()) {
-                this.endboss.hit(5);
+                this.endboss.hit(12);
+                this.statusEndboss.setPercentage(this.endboss.energy);
                 this.endboss.startAttack = true;
                 playSound(sound_endboss_hurt);
             }
@@ -268,6 +274,7 @@ class World {
 
     drawStatusBars() {
         this.addToMap(this.statusBar);
+        if (this.endboss.startWalking) this.addToMap(this.statusEndboss);
         this.addToMap(this.statusBottles);
         this.addToMap(this.statusCoins);
     }
