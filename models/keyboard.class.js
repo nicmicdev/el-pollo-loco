@@ -119,6 +119,7 @@ function mTHROW(){
 //EVENT LISTENER FOR FULLSCREEN
 document.addEventListener('fullscreenchange', (e) => {
     if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+        fullscreenActive = false
         closeFullscreen();
         console.log('Close Fullscreen works');
     }

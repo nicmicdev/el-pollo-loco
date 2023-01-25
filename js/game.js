@@ -27,9 +27,9 @@ function fullscreen() {
 
 function closeFullscreen() {
     let fullscreen = document.getElementById('fullscreen');
+    if(fullscreenActive)exitFullscreen(fullscreen);
+    removeFullscreenFromElements();
     fullscreenActive = false;
-    exitFullscreen(fullscreen);
-    removeFullscreenFromElements()
 }
 
 
@@ -45,7 +45,7 @@ function enterFullscreen(element) {
 
 
 function exitFullscreen() {
-    if(document.exitFullscreen) {
+    if(fullscreenActive) {
       document.exitFullscreen();
     } else if(document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
